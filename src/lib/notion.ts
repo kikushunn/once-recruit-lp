@@ -44,7 +44,9 @@ export async function getRecruitStores() {
     name: title(page.properties["店舗名"]),
     area: text(page.properties["エリア"]),
     salary: text(page.properties["給与"]),
-    imageUrl: fileUrl(page.properties["画像"]),
+    imageUrl:
+  url(page.properties["画像URL"]) ||
+  fileUrl(page.properties["画像"]),
     lineApplyUrl: url(page.properties["LINE応募URL"]) || "https://line.me/",
     shortPr: text(page.properties["一言PR"]),
   }));
