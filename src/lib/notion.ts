@@ -204,16 +204,16 @@ export async function getJobDetails() {
   return response.results;
 }
 export async function getEnvironments() {
-  const response = await notion.dataSources.query({
-    data_source_id: process.env.NOTION_ENVIRONMENTS_DB_ID!,
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_ENVIRONMENTS_DB_ID!,
   });
 
   return response.results;
 }
 
 export async function getFlowSteps() {
-  const response = await notion.dataSources.query({
-    data_source_id: process.env.NOTION_FLOW_STEPS_DB_ID!,
+  const response = await notion.databases.query({
+    database_id: process.env.NOTION_FLOW_STEPS_DB_ID!,
   });
 
   return response.results;
