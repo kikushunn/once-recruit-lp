@@ -256,7 +256,7 @@ const flowSteps = await getFlowSteps();
           key={item.id}
           className="flex gap-6 rounded-3xl bg-white p-6 shadow-sm border border-gray-100"
         >
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white font-bold text-xl">
+          <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-500 text-white font-bold text-xl shrink-0">
             {String(item.properties["並び順"]?.number).padStart(2, "0")}
           </div>
 
