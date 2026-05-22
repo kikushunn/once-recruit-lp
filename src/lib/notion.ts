@@ -36,22 +36,21 @@ function fileUrl(prop: any) {
   return file.type === "file" ? file.file.url : file.external.url;
 }
 
-export async function getRecruitStores() {
-  const response = await notion.dataSources.query({
-    data_source_id: process.env.NOTION_STORES_DB_ID!,
-    filter: {
-      property: "表示",
-      checkbox: {
-        equals: true,
-      },
+const response = await notion.dataSources.query({
+  data_source_id: process.env.NOTION_STORES_DB_ID!,
+  filter: {
+    property: "表示",
+    checkbox: {
+      equals: true,
     },
-    sorts: [
-      {
-        property: "並び順",
-        direction: "ascending",
-      },
-    ],
-  });
+  },
+  sorts: [
+    {
+      property: "表示順",
+      direction: "ascending",
+    },
+  ],
+});
 
   return response.results.map((page: any) => ({
     id: page.id,
