@@ -5,6 +5,21 @@ import { Client } from "@notionhq/client";
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
+const notion = new Client({
+  auth: process.env.NOTION_TOKEN,
+});
+
+console.log("NOTION ENV CHECK", {
+  STORES: process.env.NOTION_STORES_DB_ID,
+  INTERVIEW: process.env.NOTION_INTERVIEW_DB_ID,
+  REWARD: process.env.NOTION_REWARD_DB_ID,
+  HERO: process.env.NOTION_HERO_DB_ID,
+  FAQ: process.env.NOTION_FAQ_DB_ID,
+  CTA: process.env.NOTION_CTA_DB_ID,
+  JOB_DETAIL: process.env.NOTION_JOB_DETAIL_DB_ID,
+  ENVIRONMENTS: process.env.NOTION_ENVIRONMENTS_DB_ID,
+  FLOW_STEPS: process.env.NOTION_FLOW_STEPS_DB_ID,
+});
 
 function text(prop: any) {
   return prop?.rich_text?.[0]?.plain_text ?? "";
