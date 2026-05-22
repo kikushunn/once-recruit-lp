@@ -204,6 +204,8 @@ export async function getJobDetails() {
   return response.results;
 }
 export async function getEnvironments() {
+  console.log("ENVIRONMENTS ID:", process.env.NOTION_ENVIRONMENTS_DB_ID);
+
   const response = await notion.dataSources.query({
     data_source_id: process.env.NOTION_ENVIRONMENTS_DB_ID!,
   });
@@ -212,6 +214,8 @@ export async function getEnvironments() {
 }
 
 export async function getFlowSteps() {
+  console.log("FLOW STEPS ID:", process.env.NOTION_FLOW_STEPS_DB_ID);
+
   const response = await notion.dataSources.query({
     data_source_id: process.env.NOTION_FLOW_STEPS_DB_ID!,
   });
