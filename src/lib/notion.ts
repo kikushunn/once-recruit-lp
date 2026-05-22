@@ -53,7 +53,13 @@ export async function getRecruitStores() {
   ],
 });
 
-  return response.results.map((page: any) => ({
+  return response.results
+  .sort((a: any, b: any) => {
+    const orderA = a.properties["表示順"]?.number ?? 999;
+    const orderB = b.properties["表示順"]?.number ?? 999;
+    return orderA - orderB;
+  })
+  .map((page: any) => ({
     id: page.id,
     name: title(page.properties["店舗名"]),
     area: text(page.properties["エリア"]),
