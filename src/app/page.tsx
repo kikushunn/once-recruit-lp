@@ -40,7 +40,9 @@ const flowSteps = await getFlowSteps();
 >
         <div className="max-w-5xl mx-auto">
           <p className="text-green-400 font-bold">
-            {hero.label}
+            <span className="inline-block rounded-lg bg-white/60 px-3 py-1 text-[#00994d] font-bold shadow-sm backdrop-blur-sm">
+  {hero.label}
+</span>
           </p>
 
           <h1 className="mt-6 text-[28px] leading-tight font-bold tracking-tight text-[#545454] sm:text-[42px] md:text-7xl">
@@ -53,7 +55,9 @@ const flowSteps = await getFlowSteps();
 </h1>
 
           <p className="mt-6 text-xl text-[#545454]">
+  <span className="inline-block rounded-lg bg-white/50 px-4 py-2 backdrop-blur-sm">
   {hero.subtitle}
+</span>
 </p>
 
           <a
