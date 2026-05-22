@@ -238,5 +238,9 @@ export async function getFlowSteps() {
     data_source_id: process.env.NOTION_FLOW_STEPS_DB_ID!,
   });
 
-  return response.results;
+  return response.results.sort((a: any, b: any) => {
+    const orderA = a.properties["表示順"]?.number ?? 999;
+    const orderB = b.properties["表示順"]?.number ?? 999;
+    return orderA - orderB;
+  });
 }
