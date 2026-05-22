@@ -239,8 +239,8 @@ export async function getFlowSteps() {
   });
 
   return response.results.sort((a: any, b: any) => {
-    const orderA = a.properties["表示順"]?.number ?? 999;
-    const orderB = b.properties["表示順"]?.number ?? 999;
+    const orderA = a.properties["並び順"]?.number ?? 999;
+const orderB = b.properties["並び順"]?.number ?? 999;
     return orderA - orderB;
   });
 }
