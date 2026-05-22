@@ -5,9 +5,6 @@ import { Client } from "@notionhq/client";
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
-const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
-});
 
 console.log("NOTION ENV CHECK", {
   STORES: process.env.NOTION_STORES_DB_ID,
