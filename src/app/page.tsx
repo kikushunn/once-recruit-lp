@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   getRecruitStores,
   getInterviews,
@@ -10,6 +11,8 @@ import {
 　getFlowSteps
 } from "@/lib/notion";
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const stores = await getRecruitStores();
   const hero = await getHero();

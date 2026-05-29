@@ -1,10 +1,13 @@
 import { Client } from "@notionhq/client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
+
+const STORE_VISIBLE_PROPERTY = "表示ON/OFF";
 
 console.log("NOTION ENV CHECK", {
   STORES: process.env.NOTION_STORES_DB_ID,
@@ -30,17 +33,11 @@ function url(prop: any) {
   return prop?.url ?? "";
 }
 
-function fileUrl(prop: any) {
-  const file = prop?.files?.[0];
-  if (!file) return "";
-  return file.type === "file" ? file.file.url : file.external.url;
-}
-
 export async function getRecruitStores() {
   const response = await notion.dataSources.query({
   data_source_id: process.env.NOTION_STORES_DB_ID!,
   filter: {
-    property: "表示",
+    property: STORE_VISIBLE_PROPERTY,
     checkbox: {
       equals: true,
     },
@@ -54,6 +51,7 @@ export async function getRecruitStores() {
 });
 
   return response.results
+  .filter((page: any) => page.properties[STORE_VISIBLE_PROPERTY]?.checkbox === true)
   .sort((a: any, b: any) => {
     const orderA = a.properties["表示順"]?.number ?? 999;
     const orderB = b.properties["表示順"]?.number ?? 999;
@@ -208,7 +206,7 @@ export async function getCtas() {
   }));
 }
 export async function getHeroSection() {
-  const response = await notion.search({
+  await notion.search({
     query: "メインビジュアル",
   });
 
