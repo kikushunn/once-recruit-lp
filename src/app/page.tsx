@@ -8,7 +8,8 @@ import {
   getHero,
   getJobDetails,
   getEnvironments,
-　getFlowSteps
+　getFlowSteps,
+  getStudioOnceSection
 } from "@/lib/notion";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -30,6 +31,8 @@ export default async function Home() {
   const ctas = await getCtas();
   const environments = await getEnvironments();
 const flowSteps = await getFlowSteps();
+  const studioOnceSection = await getStudioOnceSection();
+  console.log("STUDIO ONCE SECTION:", studioOnceSection);
 
   return (
     <main className="min-h-screen bg-white">
@@ -114,6 +117,35 @@ const flowSteps = await getFlowSteps();
                 >
                   応募する
                 </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="bg-white px-6 py-20">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-green-600 font-bold">
+            {studioOnceSection?.label || "STUDIO ONCE"}
+          </p>
+
+          <h2 className="mt-2 text-4xl font-bold text-[#545454]">
+            {studioOnceSection?.title || "スタジオONCEとは？"}
+          </h2>
+
+          <div className="mt-6 space-y-4 text-lg leading-8 text-[#545454]">
+            <p>
+              {studioOnceSection?.body ||
+                "完全個室・マンツーマン専門のマシンピラティススタジオです。"}
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {studioOnceSection?.cards?.map((card) => (
+              <div
+                key={card}
+                className="rounded-3xl bg-[#f7fbf8] p-8"
+              >
+                <h3 className="font-bold text-xl text-[#545454]">{card}</h3>
               </div>
             ))}
           </div>

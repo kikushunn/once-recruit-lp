@@ -212,6 +212,39 @@ export async function getHeroSection() {
 
   return [];
 }
+export async function getStudioOnceSection() {
+  console.log("STUDIO ONCE DB ID:", process.env.NOTION_STUDIO_ONCE_DB_ID);
+
+  const response = await notion.dataSources.query({
+    data_source_id: process.env.NOTION_STUDIO_ONCE_DB_ID!,
+    filter: {
+      property: "表示ON/OFF",
+      checkbox: {
+        equals: true,
+      },
+    },
+  });
+
+  const page = response.results[0] as any;
+
+  if (!page) {
+    return null;
+  }
+
+  return {
+    label: text(page.properties["英字ラベル"]) || title(page.properties["英字ラベル"]),
+    title:
+      text(page.properties["見出し"]) ||
+      title(page.properties["見出し"]) ||
+      title(page.properties["タイトル"]),
+    body: text(page.properties["本文"]),
+    cards: [
+      text(page.properties["カード1タイトル"]) || text(page.properties["ポイント1"]),
+      text(page.properties["カード2タイトル"]) || text(page.properties["ポイント2"]),
+      text(page.properties["カード3タイトル"]) || text(page.properties["ポイント3"]),
+    ].filter(Boolean),
+  };
+}
 export async function getJobDetails() {
   const response = await notion.dataSources.query({
   data_source_id: process.env.NOTION_JOB_DETAIL_DB_ID!,
